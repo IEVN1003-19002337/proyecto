@@ -1,0 +1,74 @@
+<div id="layoutAuthentication" class="flex items-center justify-center bg-gray-100">
+  <div id="layoutAuthentication_content">
+    <main>
+      <div class="container mx-auto w-full">
+        <div class="flex justify-center">
+          <div class="w-full max-w-4xl">
+            <div class="bg-white shadow-lg border border-gray-200 rounded-lg mt-5 pb-10">
+              <div class="px-10 py-10 border-b">
+                <h3 class="text-center text-2xl font-semibold text-gray-800 my-4">Login</h3>
+              </div>
+              <div class="p-6">
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                  <div class="mb-4">
+                    <label class="block text-gray-700" for="email">Correo electrónico</label>
+                    <input id="email"
+                           class="form-input mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
+                           type="email"
+                           formControlName="email"
+                           placeholder="name@example.com"
+                           required
+                    />
+                    <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error">
+                      Por favor, ingrese un correo válido.
+                    </div>
+                  </div>
+                  <div class="mb-4">
+                    <label class="block text-gray-700" for="password">Contraseña</label>
+                    <input id="password"
+                           class="form-input mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
+                           type="password"
+                           formControlName="password"
+                           placeholder="Password"
+                           required
+                    />
+                    <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error">
+                      La contraseña debe tener al menos 6 caracteres.
+                    </div>
+                  </div>
+
+                  <div class="mb-4 flex items-center">
+                    <input  id="inputRememberPassword"
+                            class="form-checkbox"
+                            type="checkbox"
+                            [checked]="rememberMe"
+                            (change)="toggleRememberMe()"
+                    />
+                    <label class="ml-2 text-gray-700" for="inputRememberPassword">Recordar contraseña</label>
+                  </div>
+
+                  <div class="flex items-center justify-between mt-4 mb-0">
+                    <button type="submit"
+                            class="w-full bg-blue-500 text-white font-bold py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
+                            [disabled]="loginForm.invalid"
+                    >
+                      Iniciar Sesión
+                    </button>
+                  </div>
+                </form>
+                <div *ngIf="errorMessage" class="error-message">
+                  {{ errorMessage }}
+                </div>
+              </div>
+              <div class="text-center py-3">
+                <div class="text-gray-600"><a class="text-blue-500 hover:underline"
+                                              href="../register/register.component.html">¿Necesitas una cuenta?</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

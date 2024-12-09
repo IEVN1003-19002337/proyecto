@@ -1,0 +1,31 @@
+<div>
+  <form (ngSubmit)="addUser()">
+    <label>Nombre de usuario (correo):</label>
+    <input [(ngModel)]="newUser.nombre_usuario" name="nombre_usuario" required type="email"/>
+    <label>Contraseña:</label>
+    <input [(ngModel)]="newUser.contrasena" name="contrasena" required type="password"/>
+    <label>Tipo de cuenta:</label>
+    <input [(ngModel)]="newUser.tipo_cuenta" name="tipo_cuenta" required>
+    <button type="submit">Agregar</button>
+  </form>
+
+  <h3>Editar Usuario</h3>
+  <form (ngSubmit)="updateUser()">
+    <label>Nombre de usuario:</label>
+    <input [(ngModel)]="editUser.nombre_usuario" name="editNombreUsuario" required type="email"/>
+    <label>Contraseña:</label>
+    <input [(ngModel)]="editUser.contrasena" name="editContrasena" required type="password"/>
+    <label>Tipo de cuenta:</label>
+    <input [(ngModel)]="editUser.tipo_cuenta" name="editTipoCuenta" required/>
+    <button type="submit">Actualizar</button>
+  </form>
+
+  <h3>Lista de Usuarios</h3>
+  <ul>
+    <li *ngFor="let user of users">
+      {{ user.nombre_usuario }} ({{ user.tipo_cuenta }})
+      <button (click)="setEditUser({ nombre_usuario: user.nombre_usuario, contrasena: '',  tipo_cuenta: user.tipo_cuenta  })">Editar</button>
+      <button (click)="deleteUser(user.ID)">Eliminar</button>
+    </li>
+  </ul>
+</div>
